@@ -1,13 +1,18 @@
-import PropTypes from "prop-types";
+import PropTypes, { node, string } from "prop-types";
 
-const Button = ({ title, type = "button", handleClick }) => {
-  return <button tytpe={type} onClick={handleClick}>{title}</button>;
+const Button = ({ title, type = "button", handler }) => {
+  // const click = (id) => handler(id);
+  return (
+    <button onClick={handler} type={type}>
+      {title}
+    </button>
+  );
 };
 
 export default Button;
 
-Button.protoTypes = {
-  title: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  handleClick: PropTypes.func
+Button.propTypes = {
+  title: PropTypes.oneOfType([string, node]).isRequired,
+  type: PropTypes.string,
+  handler: PropTypes.func,
 };
